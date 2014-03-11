@@ -1,11 +1,13 @@
-<h1> <%= @events.size %> Events</h1>
+<h1> <%= pluralize(@events.size, 'Event') %></h1>
 
 <ul>
   <% @events.each do |event| %>
     <li>
       <strong><%= event.name %></strong>
-      in <%= event.location %>: 
-      <%= number_to_currency(event.price) %>
+      in <%= event.location %>, <%= event.starts_at %> : 
+      <%= format_price(event) %>
+      <br>
+      <%= truncate(event.description, length: 35, separator: ' ') %>.
     </li>
   <% end %>
 </ul>
